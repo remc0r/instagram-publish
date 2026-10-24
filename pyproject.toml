@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "instagram-publish"
-version = "1.0.0rc1"
+version = "1.0.0"
 description = "Publish photos, videos, carousels and Reels on Instagram with the Graph API, in one call."
 readme = "README.md"
 requires-python = ">=3.10"
