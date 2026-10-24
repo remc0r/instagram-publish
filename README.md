@@ -1,5 +1,11 @@
 # instagram-publish
 
+[![PyPI](https://img.shields.io/pypi/v/instagram-publish)](https://pypi.org/project/instagram-publish/)
+[![Python](https://img.shields.io/pypi/pyversions/instagram-publish)](https://pypi.org/project/instagram-publish/)
+[![Downloads](https://img.shields.io/pypi/dm/instagram-publish)](https://pypi.org/project/instagram-publish/)
+[![CI](https://github.com/remc0r/instagram-publish/actions/workflows/ci.yml/badge.svg)](https://github.com/remc0r/instagram-publish/actions/workflows/ci.yml)
+[![License](https://img.shields.io/pypi/l/instagram-publish)](LICENSE)
+
 Publish a photo, video, Reel, carousel or Story on Instagram with the Graph API, in one call.
 
 ## Prerequisites
