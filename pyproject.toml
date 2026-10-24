@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "instagram-publish"
+version = "1.0.0"
+description = "Publish photos, videos, carousels and Reels on Instagram with the Graph API, in one call."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["requests>=2.33.0,<3"]
+authors = [{ name = "remc0r" }]
+keywords = ["instagram", "graph-api", "meta", "reels", "carousel", "stories"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/remc0r/instagram_simple_post"
+Issues = "https://github.com/remc0r/instagram_simple_post/issues"
+
+[project.scripts]
+instagram-publish = "instagram_publish.cli:main"
+
+[dependency-groups]
+dev = ["pytest", "responses"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/instagram_publish"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "LICENSE", "pyproject.toml"]
