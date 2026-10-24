@@ -21,8 +21,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/remc0r/instagram_simple_post"
-Issues = "https://github.com/remc0r/instagram_simple_post/issues"
+Homepage = "https://github.com/remc0r/instagram-publish"
+Issues = "https://github.com/remc0r/instagram-publish/issues"
 
 [project.scripts]
 instagram-publish = "instagram_publish.cli:main"
