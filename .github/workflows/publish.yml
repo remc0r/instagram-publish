@@ -1,0 +1,56 @@
+name: publish
+
+# Tag `test-v1.0.0rc1`  -> TestPyPI (dry run)
+# GitHub release `v1.0.0` -> PyPI
+
+on:
+  push:
+    tags: ["test-v*"]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Tag must match the package version
+        run: |
+          tag="${GITHUB_REF_NAME#test-}"
+          test "$tag" = "v$(uv version --short)" || { echo "tag $tag != version $(uv version --short)"; exit 1; }
+      - run: uv run pytest -q
+      - run: uv build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-testpypi:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write # trusted publishing: no stored token
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: dist, path: dist/ }
+      - uses: astral-sh/setup-uv@v6
+      - run: uv publish --trusted-publishing always --publish-url https://test.pypi.org/legacy/
+
+  publish-pypi:
+    if: github.event_name == 'release'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: dist, path: dist/ }
+      - uses: astral-sh/setup-uv@v6
+      - run: uv publish --trusted-publishing always
