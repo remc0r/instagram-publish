@@ -45,7 +45,7 @@ print(result["expires_in"] // 86400)     # days of validity (about 60)
 After a refresh, `ig` itself uses the new token right away. To keep it for next time, pass `token_file`: the client then reads the token from that file and rewrites it (mode 600) on every refresh.
 
 ```python
-ig = InstagramClient(token_file="~/.ig_token")   # first run: seeded from IG_ACCESS_TOKEN if the file doesn't exist yet
+ig = InstagramClient(token_file="~/.ig_token")   # file missing: token comes from IG_ACCESS_TOKEN, file created at the first refresh_token()
 ig.refresh_token()                               # new token saved in ~/.ig_token
 ```
 
